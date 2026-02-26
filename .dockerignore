@@ -1,0 +1,12 @@
+.git
+.gitignore
+venv/
+__pycache__/
+*.pyc
+.env
+frontend/
+GCP_DEPLOYMENT_WORKFLOW.md
+backend_execution_plan.md
+frontend_execution_plan.md
+test_tools.py
+verify_chat.py
