@@ -10,6 +10,7 @@ __pycache__/
 venv/
 .venv/
 env/
+myenv/
 *.egg-info/
 .pytest_cache/
 
@@ -38,3 +39,5 @@ client_secrets.json
 *.pt
 *.pth
 railpro-484903-4c1c277c5664.json
+rail-frontend/
+.env

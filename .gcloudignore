@@ -1,0 +1,35 @@
+.git
+.gitignore
+.gcloudignore
+.dockerignore
+.DS_Store
+
+# Python virtual environments
+venv/
+.venv/
+env/
+myenv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Environment files
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Docs & scripts (not needed in deployment)
+GCP_DEPLOYMENT_WORKFLOW.md
+backend_execution_plan.md
+frontend_execution_plan.md
+setup_google_tts.md
+README.md
+deploy.ps1
+test_tools.py
+verify_chat.py
