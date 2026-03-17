@@ -3,6 +3,7 @@ from app.core.config import settings
 import json
 
 from app.core.tools import railway_tools
+from app.core.prompts import SYSTEM_PERSONA
 
 class LLMService:
     def __init__(self):
@@ -11,7 +12,8 @@ class LLMService:
             genai.configure(api_key=settings.GEMINI_API_KEY)
             self.model = genai.GenerativeModel(
                 'gemini-flash-latest',
-                tools=railway_tools
+                tools=railway_tools,
+                system_instruction=SYSTEM_PERSONA
             )
         else:
             self.model = None
@@ -52,10 +54,15 @@ class LLMService:
             # lets us see the FunctionCall part.
             
             # Re-init model with tools but disable auto-execution
-            # Re-init model with tools but disable auto-execution
             self.model._tools = railway_tools 
             
-            response = await chat.send_message_async(prompt)
+            # Prepend current IST time so model can filter trains by departure time
+            from datetime import datetime, timezone, timedelta
+            ist = timezone(timedelta(hours=5, minutes=30))
+            now_ist = datetime.now(ist).strftime("%A, %d %B %Y, %I:%M %p IST")
+            time_aware_prompt = f"[Current Date & Time: {now_ist}]\n\n{prompt}"
+            
+            response = await chat.send_message_async(time_aware_prompt)
             
             # Loop max 10 times for chained tool calls
             for _ in range(10):

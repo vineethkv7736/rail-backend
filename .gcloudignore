@@ -33,3 +33,4 @@ README.md
 deploy.ps1
 test_tools.py
 verify_chat.py
+.env
